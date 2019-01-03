@@ -1,5 +1,12 @@
 <div class=recipeContainer>  
   <h1 align="center">List of recipes</h1>
   <hr />
+  <div class="pagination-div">
+    <%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>
   <%= render 'recipe', obj: @recipes %>
+  <br />
+  <div class="pagination-div">
+    <%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div> 
 </div>  

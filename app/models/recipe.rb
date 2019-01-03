@@ -4,4 +4,6 @@ class Recipe < ApplicationRecord
   
   belongs_to :user
   validates :user_id, presence: true
+  
+  default_scope -> { order(updated_at: :desc)}
 end

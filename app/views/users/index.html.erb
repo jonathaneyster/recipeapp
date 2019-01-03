@@ -1,0 +1,21 @@
+<<h1 align="center">Showing all users</h1>
+<hr />
+
+<div align="center">
+  <div class="pagination-div">
+    <%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>  
+  <% @users.each do |user| %>
+    <div class="listing">
+      <div class="row card col-md-4 user-listing">
+        <div><%= link_to gravatar_for(user), user_path(user) %></div>
+        <div class="user-title"><%= link_to user.name.capitalize, user_path(user) %></div>
+        <small><%= pluralize(user.recipes.count, "recipe") if user.recipes %></small>
+        <small><%= link_to "Delete user", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete user and all associated recipes?"} %></small>
+      </div>
+    </div>
+  <% end %>
+  <div class="pagination-div">
+    <%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>  
+</div>

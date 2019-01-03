@@ -8,4 +8,10 @@
 </div>
 
 <h4 align="center"><%= @user.name %>'s recipes</h4>
-<%= render 'recipes/recipe', obj: @user.recipes %>
+<div class="pagination-div">
+  <%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+<%= render 'recipes/recipe', obj: @user_recipes %>
+<div class="pagination-div">
+  <%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
