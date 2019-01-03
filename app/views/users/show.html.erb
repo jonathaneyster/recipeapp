@@ -1,2 +1,11 @@
-<<h1 align="center">Your Profile</h1>
+<<h1 align="center"><%= "#{@user.name}'s profile" %></h1>
 <hr />
+
+<div class="row">
+  <div class="col-md-4 offset-md-6 profile-image">
+    <%= gravatar_for @user, size:150 %>
+  </div>
+</div>
+
+<h4 align="center"><%= @user.name %>'s recipes</h4>
+<%= render 'recipes/recipe', obj: @user.recipes %>

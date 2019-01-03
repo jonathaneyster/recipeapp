@@ -1,0 +1,16 @@
+  <% obj.each do |recipe| %>
+    <div class=row>
+      <div class="col-md-2 user-info">
+        <secion class="center">
+          <%= gravatar_for(recipe.user, size: 120) %>
+        </secion>
+      </div>
+      <div class="col-md-8 card card-body bg-light" style="background-color: #f4f5f7;">
+        <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
+        <p><%= truncate(recipe.description, length:150) %></p>
+        <p>
+          <span class="quiet"><small><%= time_ago_in_words(recipe.created_at) %></small></span>
+        </p>
+      </div>
+    </div>  
+  <% end %>
