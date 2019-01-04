@@ -6,31 +6,53 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <%= link_to "View all recipes", recipes_path, class: "nav-link"  %>
       </li>
       <li class="nav-item">
         <!--<a class="nav-link" href="#">Users</a>-->
         <%= link_to "Users", users_path, class: "nav-link" %>
       </li>
+      <% if logged_in %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Recipes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" <%= link_to "Create a new recipe", new_recipe_path %></a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <%= link_to "View all recipes", recipes_path, class: "dropdown-item"  %>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
+      <% end %>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <!--<a class="nav-link disabled" href="#">Disabled</a>-->
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <% if logged_in %>
+    <ul class = "navbar-nav ml-auto dropleft">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "View", user_path(current_user), class: "dropdown-item"  %>
+          <%= link_to "Edit", edit_user_path(current_user), class: "dropdown-item"  %>
+          <div class="dropdown-divider"></div>
+          <!--<a class="dropdown-item" href="#">Something else here</a>-->
+          <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"  %>
+        </div>
+      </li>
+    </ul>
+    <% else %>
+      <!--<ul class="navbar-nav ml-auto">
+        <li class="nav-item"><%= link_to "Log in", login_path %></li>
+      </ul>-->
+    <% end %>
+    <!--<form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-  </div>
+  </div>-->
 </nav>
