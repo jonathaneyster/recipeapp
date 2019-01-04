@@ -11,7 +11,9 @@
         <div><%= link_to gravatar_for(user), user_path(user) %></div>
         <div class="user-title"><%= link_to user.name.capitalize, user_path(user) %></div>
         <small><%= pluralize(user.recipes.count, "recipe") if user.recipes %></small>
-        <small><%= link_to "Delete user", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete user and all associated recipes?"} %></small>
+        <% if logged_in && current_user.admin? && !user.admin? %> 
+          <small><%= link_to "Delete user", user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete user and all associated recipes?"} %></small>
+        <% end %>  
       </div>
     </div>
   <% end %>

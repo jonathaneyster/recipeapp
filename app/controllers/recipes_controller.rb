@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :require_user, except: [:index, :show]
+
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 5)
   end  
@@ -46,6 +48,4 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipe).permit(:name, :description)
     end
-    
-
 end  

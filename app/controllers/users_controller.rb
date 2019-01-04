@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+ before_action :require_same_user, only: [:edit, :update, :destroy]
+ before_action :require_admin, only: [:destroy]
+ 
   def new
     @user = User.new
   end
@@ -39,14 +42,36 @@ class UsersController < ApplicationController
   
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:danger] = "User and all recipes have been deleted"
-    redirect_to users_path
+    if !@user.admin?
+      @user.destroy
+      flash[:danger] = "User and all recipes have been deleted"
+      redirect_to users_path
+    else
+      
+    end  
   end
   
   private
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def require_same_user
+    if current_user != @user and !current_user.admin?
+      flash[:danger] = "You can only edit or delete your own account"
+      redirect_to users_path
+    else
+      
+    end  
+  end
+  
+  def require_admin
+    if logged_in && !current_user.admin?
+      flash[:danger] = "Only admin users can perform this action"
+      redirect_to root_path
+    else
+      
+    end  
   end  
 end  
