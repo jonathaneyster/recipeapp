@@ -6,4 +6,7 @@ class Recipe < ApplicationRecord
   validates :user_id, presence: true
   
   default_scope -> { order(updated_at: :desc)}
+  
+  has_many :recipe_tags
+  has_many :tags, through: :recipe_tags
 end
