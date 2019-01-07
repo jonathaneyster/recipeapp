@@ -6,12 +6,15 @@
     <%= gravatar_for @user, size:150 %>
   </div>
 </div>
-
-<h4 align="center"><%= @user.name %>'s recipes</h4>
-<div class="pagination-div">
-  <%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
-</div>
-<%= render 'recipes/recipe', obj: @user_recipes %>
-<div class="pagination-div">
-  <%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
-</div>
+<% if @user.recipes.count != 0 %>
+  <h4 align="center"><%= @user.name %>'s recipes</h4>
+  <div class="pagination-div">
+    <%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>
+  <%= render 'recipes/recipe', obj: @user_recipes %>
+  <div class="pagination-div">
+    <%= will_paginate(@user_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>
+  <% else %>
+  <h4 align="center">No recipes created</h4>
+<% end %>

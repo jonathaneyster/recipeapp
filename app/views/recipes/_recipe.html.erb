@@ -8,8 +8,11 @@
       <div class="col-md-8 card card-body bg-light" style="background-color: #f4f5f7;">
         <h4><%= link_to recipe.name, recipe_path(recipe) %></h4>
         <p><%= truncate(recipe.description, length:150) %></p>
+        <% if recipe.tags.any? %>
+          <p>Categories: <%= render recipe.tags %></p>
+        <% end %>
         <p>
-          <span class="quiet"><small><%= time_ago_in_words(recipe.created_at) %></small></span>
+          <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.user.name.capitalize %></small></span>
         </p>
         <% if logged_in && (current_user == recipe.user || current_user.admin?) %>
           <div class="recipe-actions">

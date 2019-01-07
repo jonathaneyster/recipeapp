@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
  before_action :require_same_user, only: [:edit, :update, :destroy]
  before_action :require_admin, only: [:destroy]
+ before_action :set_user, only: [:show]
  
   def new
     @user = User.new
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
   end    
 
   def show
-    @user = User.find(params[:id])
+    
     @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 5)
   end  
   
@@ -73,5 +74,9 @@ class UsersController < ApplicationController
     else
       
     end  
+  end  
+  
+  def set_user
+    @user = User.find(params[:id])
   end  
 end  

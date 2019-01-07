@@ -1,0 +1,22 @@
+<<h1 align="center">Showing all categories</h1>
+<hr />
+
+<div align="center">
+  <div class="pagination-div">
+    <%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>  
+  <% @tags.each do |ing| %>
+    <div class="listing">
+      <div class="row card col-md-4 user-listing">
+        <div class="user-title"><%= link_to ing.name.capitalize, tag_path(ing) %></div>
+        <small><%= pluralize(ing.recipes.count, "recipe") if ing.recipes %></small>
+        <% if logged_in && current_user.admin? %> 
+          <small><%= link_to "Edit category", edit_tag_path(ing) %></small>
+        <% end %>  
+      </div>
+    </div>
+  <% end %>
+  <div class="pagination-div">
+    <%= will_paginate(@recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>  
+</div>

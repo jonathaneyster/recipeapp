@@ -1,0 +1,15 @@
+<h1 align="center"><%= "#{@tag.name}" %></h1>
+<hr />
+
+<% if @tag.recipes.count != 0 %>
+  <h4 align="center">Recipes containing <%= @tag.name %></h4>
+  <div class="pagination-div">
+    <%= will_paginate(@tag_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>
+  <%= render 'recipes/recipe', obj: @tag_recipes %>
+  <div class="pagination-div">
+    <%= will_paginate(@tag_recipes, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </div>
+  <% else %>
+  <h4 align="center">No recipes created</h4>
+<% end %>

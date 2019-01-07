@@ -20,6 +20,15 @@
     </div>
   </div>
   <br />
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-8 md-offset-2 tag-checkbox">
+          <%= recipe.collection_check_boxes :tag_ids, Tag.all, :id, :name do |cb| %>
+            <% cb.label(class: "checkbox-inline input_checkbox tag-checkbox-individual") {cb.check_box(class: "checkbox") + cb.text} %>
+          <% end %>
+        </div>
+      </div>
+    </div>  
   <div class="form-group">
     <div class="col-md-6 md-offset-6">
       <%= recipe.submit class: "btn btn-primary btn-lg" %>
