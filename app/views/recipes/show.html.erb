@@ -30,3 +30,47 @@
   </div>
 </div>
 <br />
+
+<% if logged_in %>
+<div class="row">
+  <div class="col-md-8 offset-md-2 comment-enter">
+    <h3>Comments: </h3>
+    <hr />
+    <%= form_for [@recipe, @comment], :html => {class: "form-horizontal", role: "form"} do |recipe| %>
+    <br />  
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= recipe.label :description %>
+      </div>
+      <div class="col-md-8">
+        <%= recipe.text_area :description, rows: 8, class: "form-control", placeholder: "Enter comment", autofocus: "true" %>
+      </div>      
+    </div>
+  <br />
+  <div class="form-group">
+    <div class="col-md-6 md-offset-6">
+      <%= recipe.submit "Submit comment", class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
+<% end %>
+
+
+
+<% if @recipe.comments != 0 %>
+  <div class="row">
+    <div class="col-md-8 md-offset-2 show-comments">
+      <h3>Prior comments: </h3>
+      <br />
+      <div id="messages">
+        <%= render partial: 'comments/comments', object: @comments %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="row col-md-8 md-offset-2">
+    <h3>No comments</h3>
+  </div>
+<% end %>
