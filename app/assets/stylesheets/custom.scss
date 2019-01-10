@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 .bg-custom{
   background-color: black!important;
 }
@@ -17,7 +19,8 @@
 }
 
 .jumbotron{
-  background-image: url("cover-image.jpg");
+  /*font-family: Oswald;*/
+  background-image: url("https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
   background-size: cover;
   height: 500px;
 }
@@ -114,4 +117,14 @@
 
 .comment-enter{
   margin-left: 15%;
+}
+
+.header-img{
+  margin-top: -32px;
+}
+
+.img-circle{
+border-radius: 50%;
+-moz-border-radius: 50%;
+-webkit-border-radius: 50%;
 }
